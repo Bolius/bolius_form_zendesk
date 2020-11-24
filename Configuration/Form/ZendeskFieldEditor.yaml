@@ -1,0 +1,23 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formEditor:
+            dynamicRequireJsModules:
+              additionalViewModelModules:
+                10: 'TYPO3/CMS/BoliusFormZendesk/Backend/FormEditor/ViewModel'
+            formEditorFluidConfiguration:
+              partialRootPaths:
+                100: 'EXT:bolius_form_zendesk/Resources/Private/Backend/Partials/FormEditor/'
+            formEditorPartials:
+              Inspector-ZendeskInspectorEditor: 'Inspector/ZendeskInspectorEditor'
+          formElementsDefinition:
+            Text:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+

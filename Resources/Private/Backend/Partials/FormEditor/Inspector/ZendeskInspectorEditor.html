@@ -1,0 +1,21 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+    xmlns:bfz="http://typo3.org/ns/Bolius/BoliusFormZendesk/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+<div class="t3-form-control-group form-group">
+    <label data-random-id data-random-id-attribute="for" data-random-id-number="1"><span data-template-property="label"></span></label>
+    <div class="t3-form-controls" data-identifier="inspectorEditorControlsWrapper">
+        <template data-template-property="dynamicOptions">
+            <f:format.raw>
+                <bfz:zendeskFields optgroupLabel="LLL: Ticket fields"/>
+                <bfz:zendeskFields fieldType="user" optgroupLabel="LLL: User fields"/>
+                <bfz:zendeskFields fieldType="organization" optgroupLabel="LLL: Org fields"/>
+            </f:format.raw>
+        </template>
+        <select data-random-id data-random-id-attribute="id" data-random-id-number="1" data-template-property="selectOptions" class="form-control"></select>
+<!--        TODO! -->
+        <p>Some helper text for each field. Present options?</p>
+    </div>
+</div>
+</html>
