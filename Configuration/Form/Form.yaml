@@ -1,0 +1,9 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formEditor:
+            translationFile:
+              10: 'EXT:form/Resources/Private/Language/Database.xlf'
+              20: 'EXT:bolius_form_zendesk/Resources/Private/Language/Form/locallang.xlf'
