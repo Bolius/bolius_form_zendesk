@@ -20,4 +20,122 @@ TYPO3:
                     templateName: 'Inspector-ZendeskInspectorEditor'
                     propertyPath: 'properties.zendeskField'
                     label: TODO LLL Map to field in Zendesk
-
+            Password:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            Advancedpassword:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            Textarea:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            Hidden:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            Email:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            Telephone:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            Url:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            Number:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            Date:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            Checkbox:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            MultiCheckbox:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            MultiSelect:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            RadioButton:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            SingleSelect:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            DatePicker:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            FileUpload:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
+            ImageUpload:
+              formEditor:
+                editors:
+                  600:
+                    templateName: 'Inspector-ZendeskInspectorEditor'
+                    propertyPath: 'properties.zendeskField'
+                    label: TODO LLL Map to field in Zendesk
