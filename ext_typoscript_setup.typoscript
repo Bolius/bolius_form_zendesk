@@ -3,3 +3,7 @@ module.tx_form.settings.yamlConfigurations {
     1606209189 = EXT:bolius_form_zendesk/Configuration/Form/ZendeskFinisher.yaml
     1606209190 = EXT:bolius_form_zendesk/Configuration/Form/ZendeskFieldEditor.yaml
 }
+
+plugin.tx_form.settings.yamlConfigurations {
+    1606209189 = EXT:bolius_form_zendesk/Configuration/Form/FrontEnd.yaml
+}

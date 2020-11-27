@@ -6,8 +6,14 @@
             <trans-unit id="formEditor.editors.900.selectOptions.finisher.label" xml:space="preserve">
                 <source>Zendesk Finisher</source>
             </trans-unit>
-            <trans-unit id="formEditor.propertyCollections.finishers.25.editors.110.label" xml:space="preserve">
-                <source>Enable Zendesk finisher</source>
+            <trans-unit id="formEditor.propertyCollections.finishers.editors.zendeskType.label" xml:space="preserve">
+                <source>Zendesk Type</source>
+            </trans-unit>
+            <trans-unit id="formEditor.propertyCollections.finishers.editors.zendeskPriority.label" xml:space="preserve">
+                <source>Zendesk Priority</source>
+            </trans-unit>
+            <trans-unit id="formEditor.propertyCollections.finishers.editors.zendeskGroupId.label" xml:space="preserve">
+                <source>Zendesk Group id</source>
             </trans-unit>
         </body>
     </file>

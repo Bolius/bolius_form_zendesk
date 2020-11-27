@@ -23,26 +23,46 @@ TYPO3:
                           10: 'TYPO3.CMS.Form.mixins.formElementMixins.BaseCollectionEditorsMixin'
                         100:
                           label: 'formEditor.editors.900.selectOptions.finisher.label'
+#                          type, priority, group_id
                         110:
-                          identifier: 'enableZendesk'
-                          templateName: 'Inspector-CheckboxEditor'
-                          label: 'formEditor.propertyCollections.finishers.25.editors.110.label'
-                          propertyPath: 'options.enableZendesk'
+                          identifier: 'zendeskType'
+                          templateName: 'Inspector-TextEditor'
+                          label: 'formEditor.propertyCollections.finishers.editors.zendeskType.label'
+                          propertyPath: 'options.zendeskType'
                           propertyValidators:
                             10: 'NotEmpty'
-              finishersDefinition:
-                CustomFinisher:
-                  formEditor:
-                    iconIdentifier: 'form-finisher'
-                    label: 'formEditor.editors.900.selectOptions.finisher.label'
-                    predefinedDefaults:
-                      options:
-                        enableZendesk: ''
-                  # displayed when overriding finisher settings
-                  FormEngine:
-                    label: 'formEditor.editors.900.selectOptions.finisher.label'
-                    elements:
-                      customField:
-                        label: 'formEditor.propertyCollections.finishers.25.editors.110.label'
-                        config:
-                          type: 'text'
+                        120:
+                          identifier: 'zendeskPriority'
+                          templateName: 'Inspector-TextEditor'
+                          label: 'formEditor.propertyCollections.finishers.editors.zendeskPriority.label'
+                          propertyPath: 'options.zendeskPriority'
+                          propertyValidators:
+                            10: 'NotEmpty'
+                        130:
+                          identifier: 'zendeskGroupId'
+                          templateName: 'Inspector-TextEditor'
+                          label: 'formEditor.propertyCollections.finishers.editors.zendeskGroupId.label'
+                          propertyPath: 'options.zendeskGroupId'
+                          propertyValidators:
+                            10: 'Integer'
+          finishersDefinition:
+            CustomFinisher:
+              implementationClassName: 'Bolius\BoliusFormZendesk\Domain\Finishers\CustomFinisher'
+              options:
+                enableZendesk: ''
+              formEditor:
+                iconIdentifier: 'form-finisher'
+                label: 'formEditor.editors.900.selectOptions.finisher.label'
+                predefinedDefaults:
+                  options:
+                    zendeskType: 'question'
+                    zendeskPriority: 'normal'
+                    zendeskGroupId: ''
+              # displayed when overriding finisher settings
+#              FormEngine:
+#                label: 'formEditor.editors.900.selectOptions.finisher.label'
+#                elements:
+#                  customField:
+#                    label: 'formEditor.propertyCollections.finishers.25.editors.110.label'
+#                    config:
+#                      type: 'text'
