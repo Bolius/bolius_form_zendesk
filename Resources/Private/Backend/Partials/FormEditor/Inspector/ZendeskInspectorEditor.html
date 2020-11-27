@@ -7,11 +7,17 @@
     <label data-random-id data-random-id-attribute="for" data-random-id-number="1"><span data-template-property="label"></span></label>
     <div class="t3-form-controls" data-identifier="inspectorEditorControlsWrapper">
         <template data-template-property="dynamicOptions">
+            <option value="0"></option>
+            <optgroup label="LLL: Requester fields">
+                <option value="requester|email">LLL: Requester email</option>
+                <option value="requester|name">LLL: Requester name</option>
+            </optgroup>
             <f:format.raw>
                 <bfz:zendeskFields optgroupLabel="LLL: Ticket fields"/>
                 <bfz:zendeskFields fieldType="user" optgroupLabel="LLL: User fields"/>
                 <bfz:zendeskFields fieldType="organization" optgroupLabel="LLL: Org fields"/>
             </f:format.raw>
+            <option value="external_id">LLL: External ID</option>
         </template>
         <select data-random-id data-random-id-attribute="id" data-random-id-number="1" data-template-property="selectOptions" class="form-control"></select>
 <!--        TODO! -->
