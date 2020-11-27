@@ -37,7 +37,28 @@ class ZendeskFieldsViewHelper extends AbstractViewHelper
         }
 
         foreach ($fields as $field){
-            $fieldsHtml .= '<option value="' . $field->id . '">' . $field->title .
+
+            switch ($field->type){
+                case 'subject':
+                    $fieldId = 'subject';
+                    break;
+                case 'description':
+                    $fieldId = 'comment|body';
+                    break;
+                case 'group':
+                    $fieldId = 'group_id';
+                    break;
+                case 'tickettype':
+                    $fieldId = 'type';
+                    break;
+                case 'priority':
+                    $fieldId = 'priority';
+                    break;
+                default:
+                    $fieldId = 'custom_field|' . $field->id;
+            }
+
+            $fieldsHtml .= '<option value="' . $fieldId . '">' . $field->title .
                 ' [' . $field->type . ']</option>' . PHP_EOL;
         }
 
