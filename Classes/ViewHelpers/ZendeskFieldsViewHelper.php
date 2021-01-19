@@ -58,7 +58,24 @@ class ZendeskFieldsViewHelper extends AbstractViewHelper
                     $fieldId = 'custom_field|' . $field->id;
             }
 
-            $fieldsHtml .= '<option value="' . $fieldId . '">' . $field->title .
+            $fieldOptions = '';
+            if($field->custom_field_options && is_array($field->custom_field_options)){
+                foreach ($field->custom_field_options as $option){
+                    $fieldOptions .= ' ' . $option->value . ',';
+                }
+            }
+            if($field->system_field_options && is_array($field->system_field_options)){
+                foreach ($field->system_field_options as $option){
+                    $fieldOptions .= ' ' . $option->value . ',';
+                }
+            }
+
+            $fieldsHtml .= '<option
+                value="' . $fieldId . '"
+                data-title="' . $field->title . '"
+                data-description="' . $field->description . '"
+                data-field-options="' . trim($fieldOptions, ',') . '"
+                >' . $field->title .
                 ' [' . $field->type . ']</option>' . PHP_EOL;
         }
 

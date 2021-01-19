@@ -15,6 +15,10 @@
             <trans-unit id="formEditor.propertyCollections.finishers.editors.zendeskGroupId.label" xml:space="preserve">
                 <source>Zendesk Group id</source>
             </trans-unit>
+
+            <trans-unit id="someKey" xml:space="preserve">
+                <source>SOME KEY</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

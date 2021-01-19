@@ -141,6 +141,26 @@ define(
         var dynamicOptionsTmpl = getHelper()
         .getTemplatePropertyDomElement('dynamicOptions', editorHtml).get(0).content;
 
+        propertyData = getCurrentlySelectedFormElement().get(propertyPath);
+        selectElement = getHelper().getTemplatePropertyDomElement('selectOptions', editorHtml);
+        var helperText = getHelper().getTemplatePropertyDomElement('helperText', editorHtml);
+
+        function _buildHelperTextHtml(elm){
+          var helperText = '';
+
+          if(elm.data('title')){
+            helperText += '<strong>' + elm.data('title') + '</strong><br>';
+          }
+          if(elm.data('description')){
+            helperText += ' ' + elm.data('description');
+          }
+          if(elm.data('fieldOptions')){
+            helperText += ' <br><strong>(options: ' + elm.data('fieldOptions') + ')</strong>';
+          }
+
+          return helperText;
+        }
+
         function _createOption(elm, propertyData){
           var option;
 
@@ -150,13 +170,14 @@ define(
             option = new Option(elm.label, elm.value);
           }
 
-          $(option).data({value: elm['value']});
+          option.setAttribute('data-title', (elm.dataset.title ?? ''));
+          option.setAttribute('data-description', (elm.dataset.description ?? ''));
+          option.setAttribute('data-field-options', (elm.dataset.fieldOptions ?? ''));
+
+          $(option).data({ value: elm['value'] });
 
           return option;
         }
-
-        propertyData = getCurrentlySelectedFormElement().get(propertyPath);
-        selectElement = getHelper().getTemplatePropertyDomElement('selectOptions', editorHtml);
 
         var tmplChildren = dynamicOptionsTmpl.children;
 
@@ -165,6 +186,7 @@ define(
 
             var optGrp = document.createElement('optgroup');
             optGrp.label = tmplChildren[i].label;
+
             selectElement.append(optGrp);
 
             var optGrpC = tmplChildren[i].children;
@@ -180,9 +202,11 @@ define(
           }
         }
 
+        helperText.html( _buildHelperTextHtml( $('option:selected', selectElement) ));
+
         selectElement.on('change', function() {
-          console.log($('option:selected', $(this)).data('value'));
           getCurrentlySelectedFormElement().set(propertyPath, $('option:selected', $(this)).data('value'));
+          helperText.html( _buildHelperTextHtml( $('option:selected', $(this)) ));
         });
       };
 
