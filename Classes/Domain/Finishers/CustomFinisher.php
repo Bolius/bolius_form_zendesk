@@ -2,17 +2,18 @@
 namespace Bolius\BoliusFormZendesk\Domain\Finishers;
 
 use Bolius\BoliusZendesk\Service\ZendeskService;
-use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Log\Logger;
+use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Error\Error;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
 use Zendesk\API\HttpClient;
 
 class CustomFinisher extends AbstractFinisher
 {
+    /** @var $logger \TYPO3\CMS\Core\Log\Logger */
+    protected $logger;
 
     /**
      * @var ObjectManager
@@ -27,6 +28,12 @@ class CustomFinisher extends AbstractFinisher
     public function __construct(string $finisherIdentifier = '')
     {
         parent::__construct($finisherIdentifier);
+
+        /** @var LogManager $logManager */
+        $logManager = GeneralUtility::makeInstance(LogManager::class);
+
+        /** @var Logger logger */
+        $this->logger = $logManager->getLogger('Bolius.BoliusFormZendesk');
 
         $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $this->client = $this->objectManager->get(ZendeskService::class)->getClient();
@@ -78,42 +85,30 @@ class CustomFinisher extends AbstractFinisher
                     }
 
                 } else {
+
+                    // Tags get sent as an array
+                    if($fieldPropArray[0] === 'tags'){
+                        $fieldValue = explode('|', $fieldValue);
+                    }
+
                     $newTicketArray[$fieldPropArray[0]] = $fieldValue;
                 }
             }
         }
-
+//
 //        DebuggerUtility::var_dump($newTicketArray);
 //        die;
         // Create a new ticket in Zendesk
         try {
-//            $newTicket = $this->client->tickets()->create($newTicketArray);
-            throw new FinisherException(sprintf('The message body must be of type string, "%s" given.', 'array'), 1235980069);
+//            $newTicket =
+            $this->client->tickets()->create($newTicketArray);
+            $this->logger->info('New ticket created in Zendesk', $newTicketArray);
+            die;
         } catch (\Exception $e){
-            $message = $this->objectManager->get(Error::class, $e->getMessage(), 1606471141, [], 'Ticket could not be created in Zendesk!');
 
-            /** @var FlashMessage $flashMessage */
-            $flashMessage = $this->objectManager->get(
-                FlashMessage::class,
-                $message->render(),
-                $message->getTitle(),
-                2,
-                true
-            );
+            $this->logger->error($e->getMessage(), $newTicketArray);
 
-            $this->finisherContext->getControllerContext()->getFlashMessageQueue()->addMessage($flashMessage);
-
-            // TODO: Handle this better! What can the user do now?
-            // Log this and give the user a possibility to try again?
         }
-
 //        DebuggerUtility::var_dump($newTicket);die;
-
-        // TODO: Make a second input field below field selector where the user can
-        // input the field him/her self. Values would be nested using '|'
-
-        // EXTconf: Predefine group_id and more in extconf?
-        // See all fields here: https://developer.zendesk.com/rest_api/docs/support/tickets#request-body
-
     }
 }

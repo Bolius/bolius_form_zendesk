@@ -12,11 +12,12 @@
             <optgroup label="User data">
                 <option value="requester|email" data-title="User email">Email</option>
                 <option value="requester|name" data-title="User name">Name</option>
+                <option value="tags" data-title="Comma separated list of tags">Tags</option>
             </optgroup>
             <f:format.raw>
-                <bfz:zendeskFields optgroupLabel="LLL: Ticket fields"/>
-                <bfz:zendeskFields fieldType="user" optgroupLabel="LLL: User fields"/>
-                <bfz:zendeskFields fieldType="organization" optgroupLabel="LLL: Org fields"/>
+                <bfz:zendeskFields optgroupLabel="Ticket fields"/>
+                <bfz:zendeskFields fieldType="user" optgroupLabel="User fields"/>
+                <bfz:zendeskFields fieldType="organization" optgroupLabel="Organizational fields"/>
             </f:format.raw>
             <option value="external_id" data-title="ID of element in TYPO3">External ID</option>
         </template>
