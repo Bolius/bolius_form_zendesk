@@ -6,8 +6,11 @@ use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
+use Zendesk\API\Debug;
 use Zendesk\API\HttpClient;
 
 class CustomFinisher extends AbstractFinisher
@@ -95,19 +98,24 @@ class CustomFinisher extends AbstractFinisher
                 }
             }
         }
-//
-//        DebuggerUtility::var_dump($newTicketArray);
-//        die;
+
         // Create a new ticket in Zendesk
         try {
-//            $newTicket =
-            $this->client->tickets()->create($newTicketArray);
+            $newTicket = $this->client->tickets()->create($newTicketArray);
             $this->logger->info('New ticket created in Zendesk', $newTicketArray);
         } catch (\Exception $e){
-
             $this->logger->error($e->getMessage(), $newTicketArray);
-
         }
-//        DebuggerUtility::var_dump($newTicket);die;
+
+        if($newTicket && $newTicket->ticket->id){
+            /** @var Dispatcher $dispatcher */
+            $dispatcher = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
+            $dispatcher->dispatch('BoliusFormZendesk', 'afterQuestionSubmitted', [
+                'data' => array_merge(
+                    $newTicketArray,
+                    ['id' => $newTicket->ticket->id]
+                )
+            ]);
+        }
     }
 }
