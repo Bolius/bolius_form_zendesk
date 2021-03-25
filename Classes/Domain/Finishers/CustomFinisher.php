@@ -103,7 +103,6 @@ class CustomFinisher extends AbstractFinisher
 //            $newTicket =
             $this->client->tickets()->create($newTicketArray);
             $this->logger->info('New ticket created in Zendesk', $newTicketArray);
-            die;
         } catch (\Exception $e){
 
             $this->logger->error($e->getMessage(), $newTicketArray);
