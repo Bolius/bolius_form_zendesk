@@ -4,13 +4,14 @@ namespace Bolius\BoliusFormZendesk\Domain\Finishers;
 use Bolius\BoliusZendesk\Service\ZendeskService;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
-use Zendesk\API\Debug;
 use Zendesk\API\HttpClient;
 
 class CustomFinisher extends AbstractFinisher
@@ -108,6 +109,30 @@ class CustomFinisher extends AbstractFinisher
         }
 
         if($newTicket && $newTicket->ticket->id){
+
+            // Attach image. Only supports one attachment atm
+            if ($newTicketArray['attachment'] && $newTicketArray['attachment'] instanceof FileReference) {
+
+                $fileReference = $newTicketArray['attachment'];
+
+                /** @var \TYPO3\CMS\Extbase\Domain\Model\File $file */
+                $file = $fileReference->getOriginalResource()->getOriginalFile();
+                $id = $file->getUid();
+
+                /** @var File $attachment */
+                $attachment = ResourceFactory::getInstance()->getFileObject($id);
+
+                $this->client->tickets()->attach([
+                    'file' => PATH_site . $attachment->getPublicUrl(false),
+                    'type' => $attachment->getMimeType(),
+                    'name' => md5(time() . rand())
+                ])->update($newTicket->ticket->id, [
+                    'comment' => [
+                        'body' => 'File attachment',
+                    ],
+                ]);
+            }
+
             /** @var Dispatcher $dispatcher */
             $dispatcher = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
             $dispatcher->dispatch('BoliusFormZendesk', 'afterQuestionSubmitted', [
