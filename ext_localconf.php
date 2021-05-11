@@ -17,3 +17,6 @@ $GLOBALS['TYPO3_CONF_VARS']['LOG']['Bolius']['BoliusFormZendesk'] = [
         ]
     ]
 ];
+
+require_once (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('bolius_form_zendesk')
+    . 'Resources/Private/Libraries/Html2Text/Html2Text.php');

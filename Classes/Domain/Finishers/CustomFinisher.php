@@ -2,6 +2,7 @@
 namespace Bolius\BoliusFormZendesk\Domain\Finishers;
 
 use Bolius\BoliusZendesk\Service\ZendeskService;
+use Html2Text\Html2Text;
 use TYPO3\CMS\Core\Log\Logger;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Resource\File;
@@ -69,6 +70,10 @@ class CustomFinisher extends AbstractFinisher
         foreach ($formValues as $fieldName => $fieldValue){
             $field = $formRuntime->getFormDefinition()->getElementByIdentifier($fieldName);
 
+            /** @var Html2Text $html2Text */
+            $html2Text = GeneralUtility::makeInstance(Html2Text::class, $fieldValue);
+            $parsedFieldValue = $html2Text->getText();
+
             if(!$field) continue;
 
             $fieldProperties = $field->getProperties();
@@ -82,10 +87,11 @@ class CustomFinisher extends AbstractFinisher
                     if($fieldPropArray[0] == 'custom_field'){
                         $newTicketArray['custom_fields'][] = [
                             'id' => $fieldPropArray[1],
-                            'value' => $fieldValue
+                            'value' => $parsedFieldValue
+
                         ];
                     } else {
-                        $newTicketArray[$fieldPropArray[0]][$fieldPropArray[1]] = $fieldValue;
+                        $newTicketArray[$fieldPropArray[0]][$fieldPropArray[1]] = $parsedFieldValue;
                     }
 
                 } else {
@@ -95,7 +101,7 @@ class CustomFinisher extends AbstractFinisher
                         $fieldValue = explode('|', $fieldValue);
                     }
 
-                    $newTicketArray[$fieldPropArray[0]] = $fieldValue;
+                    $newTicketArray[$fieldPropArray[0]] = $parsedFieldValue;
                 }
             }
         }
