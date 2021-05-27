@@ -70,9 +70,11 @@ class CustomFinisher extends AbstractFinisher
         foreach ($formValues as $fieldName => $fieldValue){
             $field = $formRuntime->getFormDefinition()->getElementByIdentifier($fieldName);
 
-            /** @var Html2Text $html2Text */
-            $html2Text = GeneralUtility::makeInstance(Html2Text::class, $fieldValue);
-            $parsedFieldValue = $html2Text->getText();
+            if(is_string($fieldValue)){
+                /** @var Html2Text $html2Text */
+                $html2Text = GeneralUtility::makeInstance(Html2Text::class, $fieldValue);
+                $fieldValue = $html2Text->getText();
+            }
 
             if(!$field) continue;
 
@@ -87,11 +89,11 @@ class CustomFinisher extends AbstractFinisher
                     if($fieldPropArray[0] == 'custom_field'){
                         $newTicketArray['custom_fields'][] = [
                             'id' => $fieldPropArray[1],
-                            'value' => $parsedFieldValue
+                            'value' => $fieldValue
 
                         ];
                     } else {
-                        $newTicketArray[$fieldPropArray[0]][$fieldPropArray[1]] = $parsedFieldValue;
+                        $newTicketArray[$fieldPropArray[0]][$fieldPropArray[1]] = $fieldValue;
                     }
 
                 } else {
@@ -101,7 +103,7 @@ class CustomFinisher extends AbstractFinisher
                         $fieldValue = explode('|', $fieldValue);
                     }
 
-                    $newTicketArray[$fieldPropArray[0]] = $parsedFieldValue;
+                    $newTicketArray[$fieldPropArray[0]] = $fieldValue;
                 }
             }
         }
