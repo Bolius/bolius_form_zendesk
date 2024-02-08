@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Bolius\BoliusZendesk\Service\ZendeskService:
+
+  Bolius\BoliusFormZendesk\Service\ZendeskHandler:
+    arguments:
+      $zendeskService: '@Bolius\BoliusZendesk\Service\ZendeskService'
+
+  Bolius\BoliusFormZendesk\Domain\Finishers\CustomFinisher:
+    arguments:
+      $zendeskService: '@Bolius\BoliusZendesk\Service\ZendeskService',

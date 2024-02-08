@@ -1,0 +1,43 @@
+{
+    "name": "bolius/bolius-form-zendesk",
+    "description": "Integrate ext:form with Zendesk. Requires Zendesk API credentials and depends on ext:bolius_zendesk.",
+    "type": "typo3-cms-extension",
+    "license": [
+        "GPL-2.0+"
+    ],
+    "authors": [
+        {
+            "name": "Bolius Digital",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "bolius-zendesk": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bolius\\BoliusFormZendesk\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bolius\\BoliusFormZendesk\\Tests\\": "Tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "typo3/class-alias-loader": true,
+            "composer/installers": true,
+            "typo3/cms-composer-installers": true
+        }
+    },
+    "replace": {
+        "typo3-ter/bolius-form-zendesk": "self.version"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "bolius_form_zendesk"
+        }
+    }
+}

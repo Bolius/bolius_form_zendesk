@@ -4,6 +4,6 @@ TYPO3:
       prototypes:
         standard:
           formEditor:
-            translationFile:
+            translationFiles:
               10: 'EXT:form/Resources/Private/Language/Database.xlf'
               200: 'EXT:bolius_form_zendesk/Resources/Private/Language/Form/locallang.xlf'
