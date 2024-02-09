@@ -12,4 +12,4 @@ services:
 
   Bolius\BoliusFormZendesk\Domain\Finishers\CustomFinisher:
     arguments:
-      $zendeskService: '@Bolius\BoliusZendesk\Service\ZendeskService',
+      $zendeskService: '@Bolius\BoliusZendesk\Service\ZendeskService'
