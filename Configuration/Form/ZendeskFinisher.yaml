@@ -19,11 +19,14 @@ TYPO3:
                     25:
                       identifier: 'CustomFinisher'
                       editors:
-                        __inheritances:
-                          10: 'TYPO3.CMS.Form.mixins.formElementMixins.BaseCollectionEditorsMixin'
                         100:
+                          identifier: header
                           label: 'formEditor.editors.900.selectOptions.finisher.label'
+                          templateName: 'Inspector-CollectionElementHeaderEditor'
 #                          type, priority, group_id
+                        105:
+                          identifier: removeButton
+                          templateName: 'Inspector-RemoveElementEditor'
                         110:
                           identifier: 'zendeskType'
                           templateName: 'Inspector-TextEditor'
@@ -58,11 +61,3 @@ TYPO3:
                     zendeskType: 'question'
                     zendeskPriority: 'normal'
                     zendeskGroupId: ''
-              # displayed when overriding finisher settings
-#              FormEngine:
-#                label: 'formEditor.editors.900.selectOptions.finisher.label'
-#                elements:
-#                  customField:
-#                    label: 'formEditor.propertyCollections.finishers.25.editors.110.label'
-#                    config:
-#                      type: 'text'
