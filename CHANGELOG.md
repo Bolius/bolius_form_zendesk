@@ -1,0 +1,23 @@
+## 0.1.0 (September 02, 2024)
+  - Merge pull request #1 from Bolius/v11
+  - Changed services config to public
+  - Removed mixins from form finisher definitions
+  - Added extension icon.
+  - fixed Configuration/Services.yaml
+  - changed composer.json
+  - added composer file, refactored and migrated to v11.
+  - Fix error: Only use html2Text for strings :/
+  - Parse html to text before sending to Zendesk
+  - Add image attachements to fields
+  - Send out a signal then a ticket has been created in Zendesk
+  - Remove die
+  - Add logging
+  - Format zendesk fields in form editor
+  - Add custom finisher for creating ticket in Zendesk
+  - Add more options to inspector editor
+  - Return option values in a format that can be handled by js
+  - Add zendesk field to all known field types
+  - Add enable Zendesk as a finisher
+  - Initial commit. Add Zendesk handler and inspector field in BE
+  - Initial commit
+
