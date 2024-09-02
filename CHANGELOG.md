@@ -1,3 +1,6 @@
+## 1.0.0 (September 02, 2024)
+
+
 ## 0.1.0 (September 02, 2024)
   - Merge pull request #1 from Bolius/v11
   - Changed services config to public
